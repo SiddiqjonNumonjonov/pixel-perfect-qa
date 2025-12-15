@@ -69,7 +69,7 @@ export const HeroSection = () => {
               <a href="#contact">Get in Touch</a>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <a href="/resume.pdf" download="Siddiqjon_Numonjonov_Resume.pdf">
+              <a href="/resume.pdf" download="/resume.pdf">
                 <Download size={18} />
                 Download Resume
               </a>
