@@ -7,43 +7,75 @@ import {
   TestTube2, 
   FileSearch,
   Bug,
-  Workflow
+  Workflow,
+  Settings,
+  Gauge,
+  ClipboardCheck,
+  Zap
 } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "Automation",
+    title: "Automation Testing",
+    icon: Zap,
     skills: [
-      { name: "Java", icon: Code2 },
-      { name: "Selenium", icon: Layers },
+      "Java",
+      "Selenium WebDriver",
+      "Test automation framework design",
+      "End-to-End test automation",
+      "UI regression automation",
     ],
   },
   {
     title: "API Testing",
+    icon: FileSearch,
     skills: [
-      { name: "Rest Assured", icon: FileSearch },
+      "REST API testing",
+      "Rest Assured",
+      "HTTP methods & status codes",
+      "Request/response validation",
+      "Integration testing",
     ],
   },
   {
-    title: "Testing Types",
+    title: "Manual Testing",
+    icon: ClipboardCheck,
     skills: [
-      { name: "End-to-End", icon: Workflow },
-      { name: "Integration", icon: Layers },
-      { name: "Regression", icon: TestTube2 },
+      "Functional testing",
+      "Regression testing",
+      "Smoke & sanity testing",
+      "Test case design & execution",
+      "Bug reporting & verification",
     ],
   },
   {
-    title: "Backend & Tools",
+    title: "Performance Testing",
+    icon: Gauge,
     skills: [
-      { name: "SQL", icon: Database },
-      { name: "Git", icon: GitBranch },
+      "Load and performance testing",
+      "Identifying bottlenecks",
+      "Stability testing",
+      "Stress testing basics",
     ],
   },
   {
     title: "QA Practices",
+    icon: TestTube2,
     skills: [
-      { name: "Test Design", icon: TestTube2 },
-      { name: "Bug Reporting", icon: Bug },
+      "Requirement analysis",
+      "Test planning & design",
+      "Risk-based testing",
+      "Defect lifecycle management",
+    ],
+  },
+  {
+    title: "Tools & Technologies",
+    icon: Settings,
+    skills: [
+      "Git",
+      "SQL",
+      "Postman",
+      "CI/CD awareness",
     ],
   },
 ];
@@ -67,7 +99,7 @@ export const SkillsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
@@ -75,24 +107,27 @@ export const SkillsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
-              className="p-6 rounded-2xl bg-card border border-border"
+              className="group p-6 rounded-2xl bg-card border border-border hover:border-primary/30 transition-all duration-300"
             >
-              <h3 className="text-sm font-medium text-primary mb-4 uppercase tracking-wider">
-                {category.title}
-              </h3>
-              <div className="space-y-3">
-                {category.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="flex items-center gap-3 text-foreground"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
-                      <skill.icon className="w-4 h-4 text-muted-foreground" />
-                    </div>
-                    <span className="text-sm font-medium">{skill.name}</span>
-                  </div>
-                ))}
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <category.icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-base font-semibold text-foreground">
+                  {category.title}
+                </h3>
               </div>
+              <ul className="space-y-2.5">
+                {category.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="flex items-center gap-2.5 text-sm text-secondary-foreground"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-muted-foreground" />
+                    <span>{skill}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>
